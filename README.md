@@ -1,2 +1,2 @@
-# aether
-Invictus Radio
+# Aether
+Audio Engine for Invictus Radio
