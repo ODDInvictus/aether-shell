@@ -1,20 +1,30 @@
 version: '3'
 
+volumes:
+  cache_spotify:
+  cache_spotify_system:
+ 
 services:
   spotify:
-    image: ak1pe/librespot
+    image: giof71/librespot:latest
     container_name: spotify
     restart: unless-stopped
+    privileged: true
+    command: /usr/bin/librespot
     volumes:
-      - ./data/spotify/spotify_fifo:/tmp/librespot_fifo
-      - ./data/spotify/cache:/tmp/librespot_cache
-      - ./credentials/spotify:/tmp/librespot_credentials
+      - ./data/spotify/fifo:/tmp/fifo
+      - cache_spotify:/data/cache
+      - ./credentials/spotify:/user/config
     environment:
-      - LIBRESPOT_NAME=Aether
-      - LIBRESPOT_AUDIO_CACHE = 'no'
-      - LIBRESPOT_ENABLE_VERBOSE = true
-      - LIBRESPOT_DISABLE_DISCOVERY = true
-      - LIBRESPOT_INITIAL_VOLUME = 100
-      - LIBRESPOT_ENABLE_VOLUME_NORMALISATION = true
-      - LIBRESPOT_DEBUG = true
-      - LIBRESPOT_DEVICE_TYPE = 'speaker'
+      - BACKEND=pipe
+      - BITRATE=320
+      - INITIAL_VOLUME=100
+      - DEVICE_NAME=Aether
+      - DEVICE_TYPE=speaker
+      - DEVICE=/tmp/fifo/fifo
+      - ENABLE_CACHE=y
+      - ENABLE_SYSTEM_CACHE=y
+      - DISABLE_DISCOVERY=y
+      - ENABLE_VOLUME_NORMALISATION=y
+#      - AUTOPLAY=y
+#      - PASSTHROUGH=y

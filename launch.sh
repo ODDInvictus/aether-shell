@@ -3,9 +3,9 @@
 echo "Starting the AETHER..."
 
 # check if fifo exists
-if [ ! -p ./data/spotify/spotify_fifo ]; then
+if [ ! -p ./data/spotify/fifo/fifo ]; then
     echo "FIFO not found, creating..."
-    mkfifo ./data/spotify/spotify_fifo
+    mkfifo ./data/spotify/fifo/fifo
 fi
 
-docker-compose up -d
+docker compose up -d
