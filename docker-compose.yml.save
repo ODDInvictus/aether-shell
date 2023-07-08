@@ -1,0 +1,19 @@
+version: '3'
+
+volumes:
+  cache_spotify:
+  audio_pipe_spotify:
+
+services:
+  spotify:
+    image: giof71/librespot:latest
+    container_name: spotify
+    restart: unless-stopped
+    privileged: true
+    command: /usr/bin/librespot
+    volumes:
+      - audio_pipe_spotify:/tmp/librespot_fifo
+      - cache_spotify:/tmp/librespot_cache
+      - ./credentials/spotify:/tmp/librespot_credentials
+    environment:
+      - BACKEND = 
