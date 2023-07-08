@@ -6,7 +6,7 @@ Audio Engine for Invictus Radio
 
 in the /credentials folder make the following files
 
-/credentials/spotify
+/credentials/spotify/credentials.txt
 
 ```
 USERNAME=xxx
